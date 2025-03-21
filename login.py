@@ -1940,4 +1940,3 @@ start_window()
 
 root.mainloop()
 
-#copyright of soumyadipcodes
