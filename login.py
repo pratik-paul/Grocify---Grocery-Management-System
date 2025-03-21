@@ -9,16 +9,11 @@ import os,sys
 import time
 import tkinter as tk
 
-mycon = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+mycon = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
 cur1 = mycon.cursor()
 cur2 = mycon.cursor()
 product_cursor = mycon.cursor()
 table_cursor=mycon.cursor()
-
-table_cursor.execute('create table if not exists admin_register (id int primary key not null,username varchar(20),password varchar(50))')
-table_cursor.execute('create table if not exists employees (employee_id int primary key not null,username varchar(20),password varchar(50),employee_name varchar(300),contact_num varchar(10),address varchar(300),aadhar_num varchar(12))')    
-table_cursor.execute('create table if not exists invoices (bill_number int primary key not null,date varchar(10),customer_name varchar(300),customer_contact varchar(10))')     
-table_cursor.execute('create table if not exists products (product_id int primary key not null,category varchar(300),sub_category varchar(300),product_name varchar(300),stock_quantity int,MRP int)')
 
 
 def start_window():
@@ -41,16 +36,16 @@ def start_window():
     bg = ImageTk.PhotoImage(file="images/login.jpg")
     Label(frame1,image=bg).pack()
 
-    Label(frame1,text="Grocery Store",font=("Impact",50),bg="white",fg="black").place(x=500,y=200)
+    Label(frame1,text="GROCIFY",font=("Bernard MT Condensed",80),bg="#347555",fg="#fed837").place(x=905,y=170)
 
     adm_btn = PhotoImage(file="images/buttons/admin.png")
     emp_btn = PhotoImage(file="images/buttons/employee.png")
 
-    bt0 = Button(frame1,image=adm_btn,borderwidth=0,bg="white",command=login_admin_window)
-    bt0.place(x=500,y=380)
+    bt0 = Button(frame1,image=adm_btn,borderwidth=0,bg="#347555", fg="white",command=login_admin_window)
+    bt0.place(x=900,y=350)
 
-    bt1 = Button(frame1,image=emp_btn,borderwidth=0,bg="white",command=login_emp_window)
-    bt1.place(x=720,y=380)
+    bt1 = Button(frame1,image=emp_btn,borderwidth=0,bg="#347555",command=login_emp_window)
+    bt1.place(x=1100,y=350)
 
 def login_admin_window():
     ################################################## LOGIN Admin WINDOW ###############################################################
@@ -69,27 +64,27 @@ def login_admin_window():
     bg = ImageTk.PhotoImage(file="images/login.jpg")
     Label(adm_frame,image=bg).pack()
 
-    Label(adm_frame,text="Admin Login",font=("Impact",50),bg="white",fg="black").place(x=530,y=180)
+    Label(adm_frame,text="ADMIN LOGIN",font=("Bernard MT Condensed",45),bg="#347555",fg="#eabe80").place(x=940,y=180)
 
-    Label(adm_frame,text="Username",font=("verdana",21),bg="white").place(x=515,y=348)
+    Label(adm_frame,text="Username",font=("Rockwell",21),bg="#347555").place(x=900,y=348)
 
-    Label(adm_frame,text="Password",font=("verdana",21),bg="white").place(x=515,y=408)
+    Label(adm_frame,text="Password",font=("Rockwell",21),bg="#347555").place(x=900,y=408)
 
     adm_t1 = StringVar()
     adm_t2 = StringVar()
     
     adm_e1 = Entry(adm_frame,width=15,bg="white",fg="#020202",bd=2,font=("verdana",15),relief=GROOVE,textvariable=adm_t1)
-    adm_e1.place(x=678,y=354)
+    adm_e1.place(x=1050,y=354)
 
     adm_e2 = Entry(adm_frame,width=15,bg="white",fg="#020202",bd=2,font=("verdana",15),relief=GROOVE,show="*",textvariable=adm_t2)
-    adm_e2.place(x=678,y=412)
+    adm_e2.place(x=1050,y=412)
 
     login_btn = PhotoImage(file="images/buttons/loginbtn.png")
-    bt0 = Button(adm_frame,image=login_btn,borderwidth=0,bg="white",command=submit1)
-    bt0.place(x=610,y=510)
+    bt0 = Button(adm_frame,image=login_btn,borderwidth=0,bg="#347555",command=submit1)
+    bt0.place(x=970,y=510)
 
     goback = PhotoImage(file="images/buttons/goback.png")
-    goback_btn = Button(adm_frame,image=goback,borderwidth=0,bg="white",command=start_window)
+    goback_btn = Button(adm_frame,image=goback,borderwidth=0,bg="#347555",command=start_window)
     goback_btn.place(x=1100,y=40)
 
 def login_emp_window():
@@ -109,57 +104,61 @@ def login_emp_window():
     bg = ImageTk.PhotoImage(file="images/login.jpg")
     Label(emp_frame,image=bg).pack()
 
-    Label(emp_frame,text="Employee Login",font=("Impact",50),bg="white",fg="black").place(x=480,y=180)
+    Label(emp_frame,text="EMPLOYEE LOGIN",font=("Bernard MT Condensed",45),bg="#347555",fg="#eabe80").place(x=890,y=180)
 
-    Label(emp_frame,text="Username",font=("verdana",21),bg="white").place(x=515,y=348)
+    Label(emp_frame,text="Username",font=("Rockwell",21),bg="#347555").place(x=900,y=348)
 
-    Label(emp_frame,text="Password",font=("verdana",21),bg="white").place(x=515,y=408)
+    Label(emp_frame,text="Password",font=("Rockwell",21),bg="#347555").place(x=900,y=408)
 
     emp_t1 = StringVar()
     emp_t2 = StringVar()
     
     emp_e1 = Entry(emp_frame,width=15,bg="white",fg="#020202",bd=2,font=("verdana",15),relief=GROOVE,textvariable=emp_t1)
-    emp_e1.place(x=678,y=354)
+    emp_e1.place(x=1050,y=354)
 
     emp_e2 = Entry(emp_frame,width=15,bg="white",fg="#020202",bd=2,font=("verdana",15),relief=GROOVE,show="*",textvariable=emp_t2)
-    emp_e2.place(x=678,y=412)
+    emp_e2.place(x=1050,y=412)
 
     login_btn = PhotoImage(file="images/buttons/loginbtn.png")
-    bt0 = Button(emp_frame,image=login_btn,borderwidth=0,bg="white",command = submit2)
-    bt0.place(x=610,y=510)
+    bt0 = Button(emp_frame,image=login_btn,borderwidth=0,bg="#347555",command = submit2)
+    bt0.place(x=970,y=510)
 
     goback = PhotoImage(file="images/buttons/goback.png")
-    goback_btn = Button(emp_frame,image=goback,borderwidth=0,bg="white",command=start_window)
+    goback_btn = Button(emp_frame,image=goback,borderwidth=0,bg="#347555",command=start_window)
     goback_btn.place(x=1100,y=40)
 
 def submit1():
     global adm_t1,adm_t2,adm_e1,adm_e2
 
-    cur1.execute('select username,password from admin_register')
+    cur1.execute('select username,password from admin')
     fetch_result_1 = cur1.fetchall() 
 
     adm_username = adm_t1.get()
     adm_password = adm_t2.get()
 
+    found_match = False 
+
     for i in fetch_result_1:
         if adm_username == i[0] and adm_password == i[1]:
-            messagebox.showinfo("info","Login Succesfull!!")
-            return admin_window()
-        elif adm_username == '' or adm_password == '':
-            messagebox.showwarning("Warning!","All fields are required!!!")
-            adm_e1.delete(0,END)
-            adm_e2.delete(0,END)
+            found_match = True
             break
-        else:
-            messagebox.showerror("Error!","Wrong Username or Password!!!")
-            adm_e1.delete(0,END)
-            adm_e2.delete(0,END)
-            break 
+
+    if found_match:
+        messagebox.showinfo("info","Login Succesfull!!")
+        return admin_window()
+    elif adm_username == '' or adm_password == '':
+        messagebox.showwarning("Warning!","All fields are required!!!")
+        adm_e1.delete(0,END)
+        adm_e2.delete(0,END)
+    else:
+        messagebox.showerror("Error!","Wrong Username or Password!!!")
+        adm_e1.delete(0,END)
+        adm_e2.delete(0,END)
 
 def submit2():
     global emp_t1,emp_t2,emp_e1,emp_e2
     
-    myconnect = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+    myconnect = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
     cur2 = myconnect.cursor()
     cur2.execute('select username,password from employees')
     fetch_result_2 = cur2.fetchall()
@@ -184,7 +183,7 @@ def submit2():
             emp_e2.delete(0,END)
 
 def admin_window():
-    global adm_frame,frame3,pastel,logout_btn1,inventory_btn,emp_btn2,invoice_btn,about_btn,inventory_frame,cursor_del_flag,employee_frame
+    global adm_frame,frame3,pastel,logout_btn1,inventory_btn,emp_btn2,invoice_btn,customer_btn,inventory_frame,cursor_del_flag,employee_frame
     global invoice_frame
     
     cursor_del_flag = 1
@@ -213,35 +212,190 @@ def admin_window():
     frame3 = Frame(root,width=1300,height=800)
     frame3.pack()
 
-    pastel = ImageTk.PhotoImage(file="images/pastel_gradient.jpg")
+    pastel = ImageTk.PhotoImage(file="images/background.jpeg")
     Label(frame3,image=pastel).pack()
  
     logout_btn1 = PhotoImage(file="images/buttons/logoutbtn1.png")
-    Button(frame3,image=logout_btn1,bd=0,borderwidth=0,bg="#f2f7fa",command=login_admin_window).place(x=1100,y=45)
+    Button(frame3,image=logout_btn1,bd=0,borderwidth=0,bg="#ffd32c",command=login_admin_window).place(x=1100,y=45)
 
-    Label(frame3,text="Admin mode",font=("Verdana",45,"bold"),fg="#3d3d3d",bg="#f0f8fa").place(x=420,y=30)
+    Label(frame3,text="ADMIN MODE",font=("Bernard MT Condensed",65,"bold"),fg="black",bg="#ffd32c").place(x=780,y=180)
 
     inventory_btn = PhotoImage(file="images/buttons/inventory.png")
-    Button(frame3,image=inventory_btn,bd=0,borderwidth=0,bg="#d5eff5",command=product_management_window).place(x=110,y=300)
+    Button(frame3,image=inventory_btn,bd=0,borderwidth=0,bg="#ffd32c",command=product_management_window).place(x=750,y=320)
 
     emp_btn2 = PhotoImage(file="images/buttons/emp.png")
-    Button(frame3,image=emp_btn2,bd=0,borderwidth=0,bg="#d5eff5",command=employee_management_window).place(x=395,y=300)
+    Button(frame3,image=emp_btn2,bd=0,borderwidth=0,bg="#ffd32c",command=employee_management_window).place(x=1000,y=320)
 
     invoice_btn = PhotoImage(file="images/buttons/invoices.png")
-    Button(frame3,image=invoice_btn,bd=0,borderwidth=0,bg="#d5eff5",command=invoice_management_window).place(x=680,y=300)
+    Button(frame3,image=invoice_btn,bd=0,borderwidth=0,bg="#ffd32c",command=invoice_management_window).place(x=750,y=450)
 
-    about_btn = PhotoImage(file="images/buttons/about.png")
-    Button(frame3,image=about_btn,bd=0,borderwidth=0,bg="#d5eff5",command=about_us_window).place(x=965,y=300)
+    customer_btn = PhotoImage(file="images/buttons/customer.png")
+    Button(frame3,image=customer_btn,bd=0,borderwidth=0,bg="#ffd32c",command=customer_management_window).place(x=1000,y=450)
 
-def about_us_window():
-    root1 = tk.Tk()
-    root1.title("About Us")
-    text1 = tk.Text(root1, height=6, width=85)
-    root1.resizable(False,False)
-    text1.insert(tk.INSERT,"\n\tThis program has been made as a project for school by Soumyadip Mitra\n\n\n\t\t\t      Copyright: @soumyadipcodes")
-    text1.pack()
-    root1.mainloop()
-    root1.mainloop()
+def customer_management_window():
+    global frame3,pastel,invoice_frame,adm_t1,adm_btnpic,exit_invoice_btn,del_customer_btn,invoice_srch_btn,customer_table,bill_del_flag,invoice_t1
+    global bill_del_val
+    
+    try:
+        frame3.destroy()
+    except:
+        pass
+    
+    invoice_t1 = StringVar()
+    bill_del_flag = 1
+    username = adm_t1.get()
+    username = username.upper()
+
+    def fetch_add_data():
+        global customer_table
+
+        mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
+        curs = mycon1.cursor()
+        curs.execute("select customer_phn,customer_name,date,bill_number from customers")
+        items = curs.fetchall()
+
+        if len(items) != 0:
+            for i in items:
+                customer_table.insert('',END,values=i)
+            mycon1.commit()
+        mycon1.close()
+    
+    def clr_bill_window():
+        global customer_table
+
+        x = customer_table.get_children()
+        if x != '()':
+            for i in x:
+                customer_table.delete(i)
+
+    def srch_invoice_func():
+        global invoice_t1,customer_table,bill_del_flag
+        bill_del_flag = 1
+        try:    
+            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
+            curs = mycon1.cursor()
+            curs.execute("select customer_phn,customer_name,date,bill_number from customers")
+            items = curs.fetchall()
+            mycon1.commit()
+            mycon1.close()
+        
+            flag = 1
+            for i in items:
+                if i[0] == invoice_t1.get():
+                    messagebox.showinfo("Found",f"Customer {i[0]} found!")
+                    clr_bill_window()
+                    mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
+                    curs = mycon1.cursor()
+                    curs.execute("select customer_phn,customer_name,date,bill_number from customers where customer_phn=%s",(invoice_t1.get(),))
+                    res = curs.fetchall()
+                    for j in res:
+                        customer_table.insert('',END,values=j)
+                    mycon1.commit()
+                    mycon1.close()     
+                    flag = 0
+                    break
+            if flag == 1:
+                messagebox.showerror("Not Found","Customer not found!")
+                clr_bill_window()
+                fetch_add_data()
+        except:
+            clr_bill_window()
+            fetch_add_data()
+
+    
+    def del_customer_func():
+        try:
+            global bill_del_flag,bill_del_val
+
+            if bill_del_flag == 1:
+                messagebox.showerror("Error","Please choose a bill to delete!")
+            else:
+                op = messagebox.askyesno("Delete record","Are you sure ?")
+                if op > 0:
+                    fil = os.listdir("invoices/")
+                    for i in fil:
+                        ans = int(i.split('.')[0])
+                        if ans == bill_del_val:
+                            os.remove(f"invoices/{ans}.txt")
+                            messagebox.showinfo("Info","Record was deleted!")
+                            break
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
+                    cur3 = mycon1.cursor()
+                    cur3.execute("delete from customers where bill_number = %s",(bill_del_val,))
+                    cur3.execute("delete from invoices where bill_number = %s",(bill_del_val,))
+                    mycon1.commit()
+                    mycon1.close()
+                    clr_bill_window()
+                    bill_del_flag = 1
+                    fetch_add_data()
+        except:
+            pass
+
+
+    invoice_frame = Frame(root,height=800,width=1300)
+    invoice_frame.pack()
+
+    lbl = Label(invoice_frame,image=pastel)
+    lbl.pack()
+
+    inside_invoice_frame = Frame(invoice_frame,width=1250,height=760,bg="white")
+    inside_invoice_frame.place(x=25,y=20)
+
+    adm_btnpic = PhotoImage(file="images/buttons/adm_icon.png")
+    Label(inside_invoice_frame,image=adm_btnpic,bd=0).place(x=5,y=28)
+
+    Label(inside_invoice_frame,text="MANAGE CUSTOMERS",font=("Bernard MT Condensed",35,"bold"),bg="white",fg="black").place(x=470,y=5)
+    Label(inside_invoice_frame,text=username,font=("Rockwell",14,"bold"),bg="white",fg="black").place(x=50,y=25)
+    
+    Menu_frame = LabelFrame(inside_invoice_frame,text=" Menu ",font=("Verdana",13,"bold"),fg="black",bg="white")
+    Menu_frame.place(x=20,y=130,width=435,height=610)
+
+    lbl0 = Label(Menu_frame,text="Customer Phone No.",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
+    lbl0.place(x=5,y=10)
+
+    invoice_ent = Entry(Menu_frame,font=("Verdana",11),width=25,bd=2,relief=GROOVE,textvariable=invoice_t1)
+    invoice_ent.place(x=25,y=60)
+
+    invoice_srch_btn = PhotoImage(file="images/buttons/search.png")
+    Button(Menu_frame,image=invoice_srch_btn,bd=0,bg="white",borderwidth=0,command=srch_invoice_func).place(x=310,y=58)
+
+    lbl1 = Label(Menu_frame,text="Choose Option",font=("Verdana",11,"bold"),bg="white",fg="black",padx=18,pady=15)
+    lbl1.place(x=5,y=100)
+
+    del_customer_btn = PhotoImage(file="images/buttons/del_invoice.png")
+    Button(Menu_frame,image=del_customer_btn,bg="white",bd=0,borderwidth=0,command=del_customer_func).place(x=80,y=180)
+
+    exit_invoice_btn = PhotoImage(file="images/buttons/prod_exit.png")
+    Button(Menu_frame,image=exit_invoice_btn,bg="white",bd=0,borderwidth=0,command=admin_window).place(x=140,y=500)
+
+    invoice_frame_2 = Frame(inside_invoice_frame,bg="white",bd=2,relief=RIDGE)
+    invoice_frame_2.place(x=470,y=140,height=600,width=750)
+
+    scroll_x = Scrollbar(invoice_frame_2,orient=HORIZONTAL)
+    scroll_y = Scrollbar(invoice_frame_2,orient=VERTICAL)
+    customer_table = ttk.Treeview(invoice_frame_2,columns=("Customer Contact No","Customer name","Date","Bill number"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+
+    scroll_x.pack(side=BOTTOM,fill=X)
+    scroll_y.pack(side=RIGHT,fill=Y)
+    scroll_x.config(command=customer_table.xview)
+    scroll_y.config(command=customer_table.yview)
+
+    customer_table.heading("Customer Contact No",text="Customer Contact No.")
+    customer_table.heading("Customer name",text="Customer name")
+    customer_table.heading("Date",text="Date")
+    customer_table.heading("Bill number",text="Bill number")
+
+    customer_table['show'] = 'headings'
+
+    customer_table.column("Customer Contact No",width=150,anchor=CENTER)
+    customer_table.column("Customer name",width=150,anchor=CENTER)
+    customer_table.column("Date",width=90,anchor=CENTER)
+    customer_table.column("Bill number",width=90,anchor=CENTER)
+
+    customer_table.pack(fill=BOTH,expand=1)
+    fetch_add_data()
+    customer_table.bind("<Double-1>",view_purchase_func)
+    customer_table.bind("<ButtonRelease-1>",delete_purchase_cursor)
 
 def add_products():
     global add_btn,inventory_frame,clr_btn_1,exit_btn_1,add_prod_window
@@ -254,7 +408,7 @@ def add_products():
 
     inventory_frame.destroy()
 
-    add_prod_window = Frame(root,height=800,width=1300,bg="#ADD8E6")
+    add_prod_window = Frame(root,height=800,width=1300,bg="#ffd200")
     add_prod_window.pack()
         
     prod_frame = Frame(add_prod_window,width=1200,height=750,bg="white",bd=0,relief=RIDGE)
@@ -282,7 +436,7 @@ def add_products():
             else:
                 op = messagebox.askyesno("Add product","Add product ?")
                 if op > 0:
-                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
                     cur3 = mycon1.cursor()
                     cur3.execute("insert into products(product_id,category,sub_category,product_name,stock_quantity,MRP) VALUES(%s,%s,%s,%s,%s,%s)",
                     (addprodid_t1.get(),addcat_t1.get(),addsubcat_t1.get(),addname_t1.get(),addstock_t1.get(),addprice_t1.get())
@@ -355,7 +509,7 @@ def update_products():
     
     inventory_frame.destroy()
 
-    update_prod_window = Frame(root,height=800,width=1300,bg="#ADD8E6")
+    update_prod_window = Frame(root,height=800,width=1300,bg="#ffd200")
     update_prod_window.pack()
         
     prod_frame = Frame(update_prod_window,width=1200,height=750,bg="white",bd=0,relief=RIDGE)
@@ -368,7 +522,7 @@ def update_products():
 
     def srchprodid_func():
         global srchprodid_flag
-        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
         cur3 = mycon1.cursor()
         cur3.execute("select product_id from products")
         item = cur3.fetchall()
@@ -412,7 +566,7 @@ def update_products():
                 op = messagebox.askyesno("Update product","Update product?")
 
                 if op > 0:
-                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
                     cur3 = mycon1.cursor()
                     cur3.execute("update products set category=%s,sub_category=%s,product_name=%s,stock_quantity=%s,MRP=%s where product_id = %s",(updatecat_t1.get(),
                     updatesubcat_t1.get(),updatename_t1.get(),updatestock_t1.get(),updateprice_t1.get(),updateprodid_t1.get()))
@@ -490,7 +644,7 @@ def add_employees():
 
     employee_frame.destroy()
 
-    add_emp_window = Frame(root,height=800,width=1300,bg="#ADD8E6")
+    add_emp_window = Frame(root,height=800,width=1300,bg="#ffd200")
     add_emp_window.pack()
         
     emp_frame = Frame(add_emp_window,width=1200,height=750,bg="white",bd=0,relief=RIDGE)
@@ -520,7 +674,7 @@ def add_employees():
             else:
                 op = messagebox.askyesno("Add Employee","Add Employee ?")
                 if op > 0:
-                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
                     cur3 = mycon1.cursor()
                     cur3.execute("insert into employees(employee_id,employee_name,contact_num,address,aadhar_num,username,password) VALUES(%s,%s,%s,%s,%s,%s,%s)",
                     (addempid_t1.get(),addname_t1.get(),addcontact_t1.get(),add_address_t1.get(),addadhar_t1.get(),addusername_t1.get(),addpassword_t1.get(),)
@@ -538,6 +692,8 @@ def add_employees():
         add_entry4.delete(0,END)
         add_entry5.delete(0,END)
         add_entry6.delete(0,END)
+        add_entry7.delete(0,END)
+
 
     ###### variables ######
     addempid_t1 = IntVar()
@@ -596,7 +752,7 @@ def update_employees():
     
     employee_frame.destroy()
 
-    update_emp_window = Frame(root,height=800,width=1300,bg="#ADD8E6")
+    update_emp_window = Frame(root,height=800,width=1300,bg="#ffd200")
     update_emp_window.pack()
         
     emp_frame = Frame(update_emp_window,width=1200,height=750,bg="white",bd=0,relief=RIDGE)
@@ -609,7 +765,7 @@ def update_employees():
 
     def srchempid_func():
         global srchempid_flag
-        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
         cur3 = mycon1.cursor()
         cur3.execute("select employee_id from employees")
         item = cur3.fetchall()
@@ -645,7 +801,7 @@ def update_employees():
                 op = messagebox.askyesno("Update Employee","Update Employee details?")
 
                 if op > 0:
-                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
                     cur3 = mycon1.cursor()
                     cur3.execute("update employees set employee_name=%s,contact_num=%s,address=%s,aadhar_num=%s,username=%s,password=%s where employee_id = %s",(updatename_t1.get(),
                     updatecontact_t1.get(),updateaddr_t1.get(),update_aadhar_t1.get(),updateusername_t1.get(),updatepassword_t1.get(),updateempid_t1.get(),))
@@ -772,7 +928,7 @@ def product_management_window():
                 op = messagebox.askyesno("Delete product","Are you sure ?")
                 if op > 0:
                     messagebox.showinfo("Info","Record was deleted!")
-                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
                     cur3 = mycon1.cursor()
                     cur3.execute("delete from products where product_id = %s",(del_val,))
                     mycon1.commit()
@@ -795,7 +951,7 @@ def product_management_window():
     def search_prod_func():
         global product_table
         try:
-            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocery_store')
+            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
             cur4 = mycon1.cursor()
             cur4.execute("select product_id from products")
             res = cur4.fetchall()
@@ -823,7 +979,7 @@ def product_management_window():
     
     def fetch_add_data():
         global product_table
-        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
         cur3 = mycon1.cursor()
         cur3.execute("select product_id,product_name,category,sub_category,stock_quantity,MRP from products")
         items = cur3.fetchall()
@@ -848,21 +1004,21 @@ def product_management_window():
     adm_btnpic = PhotoImage(file="images/buttons/adm_icon.png")
     Label(inside_frame_2,image=adm_btnpic,bd=0).place(x=5,y=28)
 
-    Label(inside_frame_2,text="Inventory",font=("Verdana",35,"bold"),bg="white",fg="#3d3d3d").place(x=487,y=5)
-    Label(inside_frame_2,text=username,font=("Verdana",14,"bold"),bg="white",fg="#3d3d3d").place(x=50,y=25)
+    Label(inside_frame_2,text="INVENTORY",font=("Bernard MT Condensed",35,"bold"),bg="white",fg="black").place(x=500,y=5)
+    Label(inside_frame_2,text=username,font=("Rockwell",14,"bold"),bg="white",fg="black").place(x=50,y=25)
 
-    Menu_frame = LabelFrame(inside_frame_2,text=" Menu ",font=("Verdana",13,"bold"),fg="#3d3d3d",bg="white")
+    Menu_frame = LabelFrame(inside_frame_2,text=" Menu ",font=("Verdana",13,"bold"),fg="black",bg="white")
     Menu_frame.place(x=20,y=130,width=435,height=610)
     
     prodent_t1 = IntVar()
 
-    lbl0 = Label(Menu_frame,text="Product ID",font=("Verdana",11),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl0 = Label(Menu_frame,text="Product ID",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
     lbl0.place(x=5,y=10)
 
     product_ent = Entry(Menu_frame,font=("Verdana",11),width=25,bd=2,relief=GROOVE,textvariable=prodent_t1)
     product_ent.place(x=25,y=60)
 
-    lbl1 = Label(Menu_frame,text="Choose Option",font=("Verdana",11,"bold"),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl1 = Label(Menu_frame,text="Choose Option",font=("Verdana",11,"bold"),bg="white",fg="black",padx=18,pady=15)
     lbl1.place(x=5,y=100)
 
     add_prod_btn = PhotoImage(file="images/buttons/add_prod.png")
@@ -942,7 +1098,7 @@ def employee_management_window():
                 op = messagebox.askyesno("Delete record","Are you sure ?")
                 if op > 0:
                     messagebox.showinfo("Info","Record was deleted!")
-                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
                     cur3 = mycon1.cursor()
                     cur3.execute("delete from employees where employee_id = %s",(del_val,))
                     mycon1.commit()
@@ -966,7 +1122,7 @@ def employee_management_window():
         global employee_table,cursor_del_flag
         cursor_del_flag = 1
         try:
-            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocery_store')
+            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
             cur4 = mycon1.cursor()
             cur4.execute("select employee_id from employees")
             res = cur4.fetchall()
@@ -994,7 +1150,7 @@ def employee_management_window():
     
     def fetch_add_data():
         global employee_table
-        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+        mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
         cur3 = mycon1.cursor()
         cur3.execute("select employee_id,employee_name,contact_num,address,aadhar_num,username,password from employees")
         items = cur3.fetchall()
@@ -1019,21 +1175,21 @@ def employee_management_window():
     adm_btnpic = PhotoImage(file="images/buttons/adm_icon.png")
     Label(inside_frame_2,image=adm_btnpic,bd=0).place(x=5,y=28)
 
-    Label(inside_frame_2,text="Manage Employees",font=("Verdana",35,"bold"),bg="white",fg="#3d3d3d").place(x=390,y=5)
-    Label(inside_frame_2,text=username,font=("Verdana",14,"bold"),bg="white",fg="#3d3d3d").place(x=50,y=25)
+    Label(inside_frame_2,text="MANAGE EMPLOYEES",font=("Bernard MT Condensed",35,"bold"),bg="white",fg="black").place(x=420,y=5)
+    Label(inside_frame_2,text=username,font=("Rockwell",14,"bold"),bg="white",fg="black").place(x=50,y=25)
 
-    Menu_frame = LabelFrame(inside_frame_2,text=" Menu ",font=("Verdana",13,"bold"),fg="#3d3d3d",bg="white")
+    Menu_frame = LabelFrame(inside_frame_2,text=" Menu ",font=("Verdana",13,"bold"),fg="black",bg="white")
     Menu_frame.place(x=20,y=130,width=435,height=610)
     
     prodent_t2 = IntVar()
 
-    lbl0 = Label(Menu_frame,text="Employee ID",font=("Verdana",11),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl0 = Label(Menu_frame,text="Employee ID",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
     lbl0.place(x=5,y=10)
 
     employee_ent = Entry(Menu_frame,font=("Verdana",11),width=25,bd=2,relief=GROOVE,textvariable=prodent_t2)
     employee_ent.place(x=25,y=60)
 
-    lbl1 = Label(Menu_frame,text="Choose Option",font=("Verdana",11,"bold"),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl1 = Label(Menu_frame,text="Choose Option",font=("Verdana",11,"bold"),bg="white",fg="black",padx=18,pady=15)
     lbl1.place(x=5,y=100)
 
     add_emp_btn = PhotoImage(file="images/buttons/add_emp.png")
@@ -1103,7 +1259,7 @@ def invoice_management_window():
     def fetch_add_data():
         global invoice_table
 
-        mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocery_store')
+        mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
         curs = mycon1.cursor()
         curs.execute("select bill_number,date,customer_name,customer_contact from invoices")
         items = curs.fetchall()
@@ -1126,7 +1282,7 @@ def invoice_management_window():
         global invoice_t1,invoice_table,bill_del_flag
         bill_del_flag = 1
         try:    
-            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocery_store')
+            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
             curs = mycon1.cursor()
             curs.execute("select bill_number,date,customer_name,customer_contact from invoices")
             items = curs.fetchall()
@@ -1138,7 +1294,7 @@ def invoice_management_window():
                 if i[0] == invoice_t1.get():
                     messagebox.showinfo("Found",f"Bill {i[0]} found!")
                     clr_bill_window()
-                    mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocery_store')
+                    mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocify')
                     curs = mycon1.cursor()
                     curs.execute("select bill_number,date,customer_name,customer_contact from invoices where bill_number=%s",(invoice_t1.get(),))
                     res = curs.fetchall()
@@ -1155,6 +1311,7 @@ def invoice_management_window():
         except:
             clr_bill_window()
             fetch_add_data()
+
     
     def del_invoice_func():
         try:
@@ -1172,9 +1329,10 @@ def invoice_management_window():
                             os.remove(f"invoices/{ans}.txt")
                             messagebox.showinfo("Info","Record was deleted!")
                             break
-                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocery_store")
+                    mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
                     cur3 = mycon1.cursor()
                     cur3.execute("delete from invoices where bill_number = %s",(bill_del_val,))
+                    cur3.execute("delete from customers where bill_number = %s",(bill_del_val,))
                     mycon1.commit()
                     mycon1.close()
                     clr_bill_window()
@@ -1196,13 +1354,13 @@ def invoice_management_window():
     adm_btnpic = PhotoImage(file="images/buttons/adm_icon.png")
     Label(inside_invoice_frame,image=adm_btnpic,bd=0).place(x=5,y=28)
 
-    Label(inside_invoice_frame,text="Manage Invoices",font=("Verdana",35,"bold"),bg="white",fg="#3d3d3d").place(x=420,y=5)
-    Label(inside_invoice_frame,text=username,font=("Verdana",14,"bold"),bg="white",fg="#3d3d3d").place(x=50,y=25)
+    Label(inside_invoice_frame,text="MANAGE INVOICES",font=("Bernard MT Condensed",35,"bold"),bg="white",fg="black").place(x=470,y=5)
+    Label(inside_invoice_frame,text=username,font=("Rockwell",14,"bold"),bg="white",fg="black").place(x=50,y=25)
     
-    Menu_frame = LabelFrame(inside_invoice_frame,text=" Menu ",font=("Verdana",13,"bold"),fg="#3d3d3d",bg="white")
+    Menu_frame = LabelFrame(inside_invoice_frame,text=" Menu ",font=("Verdana",13,"bold"),fg="black",bg="white")
     Menu_frame.place(x=20,y=130,width=435,height=610)
 
-    lbl0 = Label(Menu_frame,text="Bill number",font=("Verdana",11),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl0 = Label(Menu_frame,text="Bill number",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
     lbl0.place(x=5,y=10)
 
     invoice_ent = Entry(Menu_frame,font=("Verdana",11),width=25,bd=2,relief=GROOVE,textvariable=invoice_t1)
@@ -1211,7 +1369,7 @@ def invoice_management_window():
     invoice_srch_btn = PhotoImage(file="images/buttons/search.png")
     Button(Menu_frame,image=invoice_srch_btn,bd=0,bg="white",borderwidth=0,command=srch_invoice_func).place(x=310,y=58)
 
-    lbl1 = Label(Menu_frame,text="Choose Option",font=("Verdana",11,"bold"),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl1 = Label(Menu_frame,text="Choose Option",font=("Verdana",11,"bold"),bg="white",fg="black",padx=18,pady=15)
     lbl1.place(x=5,y=100)
 
     del_invoice_btn = PhotoImage(file="images/buttons/del_invoice.png")
@@ -1281,6 +1439,39 @@ def view_bill_func(event):
 
     root1.mainloop()
 
+def view_purchase_func(event):
+
+    root1 = Tk()
+    root1.title("Bill")
+    root1.geometry("700x600+550+170")
+    root1.resizable(False,False)
+    root1.config(bg="white")
+
+    cursor_row = customer_table.focus()
+    contents = customer_table.item(cursor_row)
+    cursor_item = contents['values']
+    bill_del_val_1 = int(cursor_item[3])
+
+
+    bill_frame_1 = Frame(root1)
+    bill_frame_1.place(x=0,y=0,height=600,width=700)
+
+    scr_y = Scrollbar(bill_frame_1,orient=VERTICAL)
+    bill_txtarea = Text(bill_frame_1,yscrollcommand=scr_y.set,bd=0)
+    scr_y.pack(side=RIGHT,fill=Y)
+    scr_y.config(command=bill_txtarea.yview)
+    bill_txtarea.pack(fill=BOTH,expand=1)
+
+    for i in os.listdir("invoices/"):
+        if int(i.split('.')[0]) == bill_del_val_1:
+            f1 = open(f"invoices/{i}","r")
+            for j in f1:
+                bill_txtarea.insert(END,j)
+            f1.close()
+            break
+
+    root1.mainloop()
+
 def delete_bill_cursor(event):
     try:
         global invoice_table,bill_del_flag,bill_del_val
@@ -1291,6 +1482,19 @@ def delete_bill_cursor(event):
         contents = invoice_table.item(cursor_row)
         cursor_item = contents['values']
         bill_del_val = cursor_item[0]
+    except:
+        pass
+
+def delete_purchase_cursor(event):
+    try:
+        global customer_table,bill_del_flag,bill_del_val
+
+        bill_del_flag = 0
+
+        cursor_row = customer_table.focus()
+        contents = customer_table.item(cursor_row)
+        cursor_item = contents['values']
+        bill_del_val = cursor_item[3]
     except:
         pass
 
@@ -1314,7 +1518,7 @@ def employee_window():
     frame4 = Frame(root,width=1300,height=800)
     frame4.pack()
 
-    pastel = ImageTk.PhotoImage(file="images/pastel_gradient.jpg")
+    pastel = ImageTk.PhotoImage(file="images/background.jpeg")
     Label(frame4,image=pastel).pack()
 
     inside_frame_1 = Frame(frame4,width=1250,height=760,bg="white")
@@ -1325,17 +1529,17 @@ def employee_window():
 
     emp_btnpic = PhotoImage(file="images/buttons/adm_icon.png")
     Label(inside_frame_1,image=emp_btnpic,bd=0).place(x=5,y=28)
-    Label(inside_frame_1,text=username,font=("Verdana",14,"bold"),bg="white",fg="#3d3d3d").place(x=50,y=25)
+    Label(inside_frame_1,text=username,font=("Rockwell",14,"bold"),bg="white",fg="#3d3d3d").place(x=50,y=25)
 
 
-    Label(inside_frame_1,text="Billing system",font=("Verdana",35,"bold"),fg="#3d3d3d",bg="white").place(x=435,y=5)
+    Label(inside_frame_1,text="BILLING SYSTEM",font=("Bernard MT Condensed",35,"bold"),fg="black",bg="white").place(x=455,y=5)
     
     def invoke_cat_list():
         cat_list["values"] = ["Animal Product","Plant Product","Packed Product"]
 
     def call_catlist(event):
         sub_cat_list["values"] = ["Dairy","Meat","Sea-Food","Others","Vegetables","Fruits","Dal","Spices"]
-        prod_cat_list["values"] = ["Milk","Curd","Butter","Cheese","Chiken","Mutton","Fish","Prawn","Eggs","Potato","Onion","Tomato","Cucumber","Apple","Banana","Oranges","Guava","Chana-Dal","Moong-Dal","Cinamon"]
+        prod_cat_list["values"] = ["Milk","Curd","Butter","Cheese","Chiken","Mutton","Fish","Prawn","Eggs","Potato","Onion","Tomato","Cucumber","Apple","Banana","Orange","Guava","Chana-Dal","Moong-Dal","Cinamon"]
         sub_cat_list.current(0)
         prod_cat_list.current(0)
         quantity_entry.delete(0,END)
@@ -1418,8 +1622,8 @@ def employee_window():
             
             prod_cat_list["values"] = prod_values
 
-        elif(sub_cat_list.get() == "Vegetable"):
-            product_cursor.execute("select product_name from products where sub_category='Vegetable'")
+        elif(sub_cat_list.get() == "Vegetables"):
+            product_cursor.execute("select product_name from products where sub_category='Vegetables'")
             item = product_cursor.fetchall()
 
             for i in item:
@@ -1472,10 +1676,10 @@ def employee_window():
 
     def welcome_bill():
         txtarea.delete("1.0",END)
-        txtarea.insert(END,"\n \t\t\t\t   ABC GROCERY STORE ")
-        txtarea.insert(END,"\n \t\t\t\t   MG ROAD, RAJ GHAT")
-        txtarea.insert(END,"\n \t\t\t\t     DELHI-273005 ") 
-        txtarea.insert(END,"\n \t\t\t\t PHONE: +91-1234567890 \n")
+        txtarea.insert(END,"\n \t\t\t\t        GROCIFY ")
+        txtarea.insert(END,"\n \t\t\t\t   BNR MORE, ASANSOL")
+        txtarea.insert(END,"\n \t\t\t\t  WEST BENGAL-713304 ") 
+        txtarea.insert(END,"\n \t\t\t\t PHONE: +91-7587047834 \n")
         txtarea.insert(END,"   "+str("=")*78)
         txtarea.insert(END,f"\n    Bill number  : ")
         txtarea.insert(END,f"\n    Customer Name: ")
@@ -1590,10 +1794,13 @@ def employee_window():
             op = open("invoices/"+str(bill_num.get())+".txt","w")
             op.write(bill_file)
             op.close()
-            mycon1 = sql.connect(host='localhost',user='root',password='passwd',database='grocery_store')
-            curs = mycon1.cursor()
-            curs.execute("insert into invoices(bill_number,date,customer_name,customer_contact) VALUES(%s,%s,%s,%s)",
-            (bill_num.get(),today,cust_name.get(),contact_num.get())
+            mycon1 = sql.connect(host="localhost", user="root", password="passwd", database="grocify")
+            cur3 = mycon1.cursor()
+            cur3.execute("insert into invoices(bill_number,date,customer_name,customer_contact) VALUES(%s,%s,%s,%s)",
+            (bill_num.get(),today,cust_name.get(),contact_num.get(),)
+            )
+            cur3.execute("insert into customers(bill_number,date,customer_name,customer_phn) VALUES(%s,%s,%s,%s)",
+            (bill_num.get(),today,cust_name.get(),contact_num.get(),)
             )
             mycon1.commit()
             mycon1.close()
@@ -1616,16 +1823,7 @@ def employee_window():
                 messagebox.showerror("Error","Wrong bill number!")
         except:
             pass
-    
-    def exit_window():
-        global root
 
-        op = messagebox.askyesno("Exit","Are you sure you want to exit ?")
-        
-        if op > 0:
-            root.destroy()
-        else:
-            return
 
     ################# variables #######################
 
@@ -1642,22 +1840,22 @@ def employee_window():
 
     ################# customer area ###################
 
-    cust_frame = LabelFrame(inside_frame_1,text=" Customer Details ",font=("Verdana",13,"bold"),fg="#3d3d3d",bg="white")
+    cust_frame = LabelFrame(inside_frame_1,text=" Customer Details ",font=("Verdana",13,"bold"),fg="black",bg="white")
     cust_frame.place(x=15,y=88,width=1220)
 
-    lbl0 = Label(cust_frame,text="Customer name",font=("Verdana",11),bg="white",fg="#291d29",pady=18,padx=15)
+    lbl0 = Label(cust_frame,text="Customer name",font=("Verdana",11),bg="white",fg="black",pady=18,padx=15)
     lbl0.grid(row=0,column=0)
 
     cust_entry = Entry(cust_frame,width=27,font=("Verdana",10),bd=2,relief=GROOVE,textvariable=cust_name)
     cust_entry.grid(row=0,column=1)
 
-    lbl1 = Label(cust_frame,text="Contact number",font=("Verdana",11),bg="white",fg="#291d29",pady=18,padx=15)
+    lbl1 = Label(cust_frame,text="Contact number",font=("Verdana",11),bg="white",fg="black",pady=18,padx=15)
     lbl1.grid(row=0,column=2)
 
     contact_entry = Entry(cust_frame,width=27,font=("Verdana",10),bd=2,relief=GROOVE,textvariable=contact_num)
     contact_entry.grid(row=0,column=3)
 
-    lbl2 = Label(cust_frame,text="Bill Number",font=("Verdana",11),bg="white",fg="#291d29",pady=18,padx=15)
+    lbl2 = Label(cust_frame,text="Bill Number",font=("Verdana",11),bg="white",fg="black",pady=18,padx=15)
     lbl2.grid(row=0,column=4)
 
     bill_entry = Entry(cust_frame,width=27,font=("Verdana",10),bd=2,relief=GROOVE,textvariable=bill_num)
@@ -1670,31 +1868,30 @@ def employee_window():
 
     ############### product area ##################
 
-    product_frame = LabelFrame(inside_frame_1,text=" Products ",font=("Verdana",13,"bold"),fg="#3d3d3d",bg="white")
+    product_frame = LabelFrame(inside_frame_1,text=" Products ",font=("Verdana",13,"bold"),fg="black",bg="white")
     product_frame.place(x=15,y=180,width=507,height=455)
 
-    lbl3 = Label(product_frame,text="Select Category",font=("Verdana",11),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl3 = Label(product_frame,text="Select Category",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
     lbl3.place(x=5,y=10)
     
     cat_list = ttk.Combobox(product_frame,textvariable=cat_t1,font=("Verdana",10),width=50,height=15,state="readonly",postcommand=invoke_cat_list)
     cat_list.place(x=25,y=51)
     cat_list.bind("<<ComboboxSelected>>",call_catlist)
-
-    lbl4 = Label(product_frame,text="Sub Category",font=("Verdana",11),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl4 = Label(product_frame,text="Sub Category",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
     lbl4.place(x=5,y=80)
 
     sub_cat_list = ttk.Combobox(product_frame,textvariable=subcat_t1,font=("Verdana",10),width=50,height=15,state="readonly")
     sub_cat_list.place(x=25,y=120)
     sub_cat_list.bind("<<ComboboxSelected>>",call_subcatlist)
     
-    lbl5 = Label(product_frame,text="Product",font=("Verdana",11),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl5 = Label(product_frame,text="Product",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
     lbl5.place(x=5,y=150)
 
     prod_cat_list = ttk.Combobox(product_frame,textvariable=prodcat_t1,font=("Verdana",10),width=50,height=15,state="readonly")
     prod_cat_list.place(x=25,y=190)
     prod_cat_list.bind("<<ComboboxSelected>>",call_prodcatlist)
     
-    lbl6 = Label(product_frame,text="Quantity",font=("Verdana",11),bg="white",fg="#291d29",padx=18,pady=15)
+    lbl6 = Label(product_frame,text="Quantity",font=("Verdana",11),bg="white",fg="black",padx=18,pady=15)
     lbl6.place(x=5,y=220)
 
     quantity_entry = Entry(product_frame,font=("Verdana",10),width=52,bd=2,relief=GROOVE,textvariable=quant_t1)
@@ -1709,24 +1906,21 @@ def employee_window():
     clear_prod_window()
     ################# checkout area ##################
 
-    checkout_frame = LabelFrame(inside_frame_1,text=" Checkout ",font=("Verdana",13,"bold"),fg="#3d3d3d",bg="white")
+    checkout_frame = LabelFrame(inside_frame_1,text=" Checkout ",font=("Verdana",13,"bold"),fg="black",bg="white")
     checkout_frame.place(x=15,y=640,width=507,height=100)
  
     total_btn = PhotoImage(file="images/buttons/total.png")
-    Button(checkout_frame,image=total_btn,bg="white",bd=0,borderwidth=0,command=calculate_total).place(x=10,y=20)
+    Button(checkout_frame,image=total_btn,bg="white",bd=0,borderwidth=0,command=calculate_total).place(x=40,y=20)
 
     generate_btn = PhotoImage(file="images/buttons/generate.png")
-    Button(checkout_frame,image=generate_btn,bg="white",bd=0,borderwidth=0,command=generate_bill).place(x=133,y=20)
+    Button(checkout_frame,image=generate_btn,bg="white",bd=0,borderwidth=0,command=generate_bill).place(x=190,y=20)
 
     clear_btn = PhotoImage(file="images/buttons/clear_bill.png")
-    Button(checkout_frame,image=clear_btn,bg="white",bd=0,borderwidth=0,command=clear_bill_window).place(x=262,y=20)
-
-    exit_btn = PhotoImage(file="images/buttons/exit.png")
-    Button(checkout_frame,image=exit_btn,bg="white",bd=0,borderwidth=0,command=exit_window).place(x=388,y=20)
+    Button(checkout_frame,image=clear_btn,bg="white",bd=0,borderwidth=0,command=clear_bill_window).place(x=350,y=20)
 
     ################ bill area #################
 
-    bill_frame = LabelFrame(inside_frame_1,text=" Bill Window ",font=("Verdana",13,"bold"),bg="white",fg="#3d3d3d")
+    bill_frame = LabelFrame(inside_frame_1,text=" Bill Window ",font=("Verdana",13,"bold"),bg="white",fg="black")
     bill_frame.place(x=530,y=180,height=560,width=705)
 
     scroll_y = Scrollbar(bill_frame,orient=VERTICAL)
@@ -1738,10 +1932,11 @@ def employee_window():
     welcome_bill()
 
 root = Tk()
-root.title("Grocery Store Management System")
+root.title("Grocify")
 root.geometry("1300x750+100+0")
 root.resizable(False,False)
 
 start_window()
 
 root.mainloop()
+
